@@ -39,6 +39,9 @@ gem 'haml'
 # Use Twitter client
 gem 'twitter', '~> 6.2'
 
+# Use Bootstrap as css framework
+gem 'bootstrap', '~> 4.1.1'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
