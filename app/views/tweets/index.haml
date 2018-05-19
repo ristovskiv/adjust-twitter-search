@@ -1,11 +1,15 @@
 %h1.text-center Tweets
 
-.row
+.row.mb-3
   .col-md
     = simple_form_for @tweet_search_form, url: tweets_path, method: :get do |f|
-      .form-group
-        = f.input :q, label: false, placeholder: 'Search term', input_html: { class: 'form-control' }
-      = f.button :submit, 'Search', class: 'btn btn-primary'
+      .row
+        .col-md-9
+          = f.input :q, label: false, placeholder: 'Search term', input_html: { class: 'form-control' }
+        .col-md-2
+          = f.input :count, as: :integer, label: false, placeholder: 'Tweets number', input_html: { class: 'form-control', min: 0, max: 100 }
+        .col-md-1
+          = f.button :submit, 'Search', class: 'btn btn-primary'
 
 .row
   .col-md

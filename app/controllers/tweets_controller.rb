@@ -7,6 +7,6 @@ class TweetsController < ApplicationController
   private
 
   def tweet_search_form_params
-    params.fetch(:tweet_search, {}).permit(:q)
+    params.fetch(:tweet_search, {}).permit(:q, :count)
   end
 end
