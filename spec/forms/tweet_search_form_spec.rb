@@ -8,6 +8,20 @@ RSpec.describe TweetSearchForm do
 
   context 'validations' do
     describe '#q' do
+      it 'can be blank' do
+        tweet_search_form = described_class.new(q: [nil, ''].sample)
+        tweet_search_form.valid?
+
+        expect(tweet_search_form.errors[:q]).to be_blank
+      end
+
+      it 'can be any string' do
+        tweet_search_form = described_class.new(q: [*'a'..'z'].sample * [*1..9].sample)
+        tweet_search_form.valid?
+
+        expect(tweet_search_form.errors[:q]).to be_blank
+      end
+
       it 'must be meaningful' do
         unmeaningful_term = %w(_ + = & # ! ?).sample * [*1..9].sample
         tweet_search_form = described_class.new(q: unmeaningful_term)

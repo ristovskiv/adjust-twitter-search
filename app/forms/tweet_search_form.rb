@@ -18,6 +18,6 @@ class TweetSearchForm
   private
 
   def format_of_search_term
-    errors.add(:q) if q.match(/\A(_|\W)+\z/)
+    errors.add(:q) if q.present? && q.match(/\A(_|\W)+\z/)
   end
 end
