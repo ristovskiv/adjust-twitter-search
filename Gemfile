@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use Haml for view templates
+gem 'haml'
+
 # Use Twitter client
 gem 'twitter', '~> 6.2'
 
