@@ -1,1 +1,13 @@
 %h1.text-center Tweets
+
+.row
+  .col-md
+    = simple_form_for @tweet_search_form, url: tweets_path, method: :get do |f|
+      .form-group
+        = f.input :q, label: false, placeholder: 'Search term', input_html: { class: 'form-control' }
+      = f.button :submit, 'Search', class: 'btn btn-primary'
+
+.row
+  .col-md
+    %ul#tweets.list-group
+      = render(partial: 'tweet', collection: @tweets)
