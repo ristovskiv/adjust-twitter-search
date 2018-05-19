@@ -42,6 +42,9 @@ gem 'twitter', '~> 6.2'
 # Use Bootstrap as css framework
 gem 'bootstrap', '~> 4.1.1'
 
+# Use simple form as form builder DLS
+gem 'simple_form'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
