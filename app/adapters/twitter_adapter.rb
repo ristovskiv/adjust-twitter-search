@@ -7,7 +7,7 @@ class TwitterAdapter
   end
 
   def search(q, count: nil)
-    count ||= TWEETS_COUNT
+    count = count.presence || TWEETS_COUNT
     client.search(q).take(count.to_i)
   end
 
