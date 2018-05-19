@@ -6,8 +6,9 @@ class TwitterAdapter
     @client = Twitter::REST::Client.new(**Rails.application.credentials.twitter)
   end
 
-  def search(q)
-    client.search(q).take(TWEETS_COUNT)
+  def search(q, count: nil)
+    count ||= TWEETS_COUNT
+    client.search(q).take(count.to_i)
   end
 
   private

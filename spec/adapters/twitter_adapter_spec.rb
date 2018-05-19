@@ -17,5 +17,12 @@ RSpec.describe TwitterAdapter do
         expect(tweets.count).to eq 10
       end
     end
+
+    it 'returns a collection of as much as count' do
+      VCR.use_cassette('twitter_search/q_adjust_count_5') do
+        tweets = adapter.search('adjust', count: 5)
+        expect(tweets.count).to eq 5
+      end
+    end
   end
 end
