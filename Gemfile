@@ -59,6 +59,10 @@ group :development, :test do
 
   # Use Rspec for testing
   gem 'rspec-rails', '~> 3.7'
+
+  # For third party HTTP requests
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do
