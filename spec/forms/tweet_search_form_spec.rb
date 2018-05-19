@@ -4,6 +4,8 @@ RSpec.describe TweetSearchForm do
 
   it { is_expected.to respond_to(:q) }
   it { is_expected.to respond_to(:q=) }
+  it { is_expected.to respond_to(:count)}
+  it { is_expected.to respond_to(:count=)}
   it { is_expected.to respond_to(:call) }
 
   context 'validations' do
@@ -30,6 +32,29 @@ RSpec.describe TweetSearchForm do
         expect(tweet_search_form.errors[:q]).to include(match(/is invalid/))
       end
     end
+
+    describe '#count' do
+      it 'it is a number' do
+        tweet_search_form = described_class.new(count: [*0..100].sample)
+        tweet_search_form.valid?
+
+        expect(tweet_search_form.errors[:count]).to be_blank
+      end
+
+      it 'must be greater than or equal to 0' do
+        tweet_search_form = described_class.new(count: -1)
+        tweet_search_form.valid?
+
+        expect(tweet_search_form.errors[:count]).to include(match(/must be greater than or equal to 0/))
+      end
+
+      it 'must be less than or equal to 100' do
+        tweet_search_form = described_class.new(count: 101)
+        tweet_search_form.valid?
+
+        expect(tweet_search_form.errors[:count]).to include(match(/must be less than or equal to 100/))
+      end
+    end
   end
 
   context '#call' do
@@ -53,9 +78,9 @@ RSpec.describe TweetSearchForm do
     describe 'when form is valid' do
       it 'can get collection of tweets' do
         adapter = instance_double(TwitterAdapter)
-        expect(adapter).to receive(:search).with('adjust')
+        expect(adapter).to receive(:search).with('adjust', count: 10)
 
-        tweet_search_form = described_class.new(q: 'adjust')
+        tweet_search_form = described_class.new(q: 'adjust', count: 10)
         allow(tweet_search_form).to receive(:valid?).and_return(true)
 
         tweet_search_form.call(adapter: adapter)
