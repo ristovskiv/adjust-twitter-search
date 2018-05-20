@@ -16,7 +16,9 @@ Open localhost:3000 and start searching!
 
 ## TODO
 
-1. Start with refactoring the specs
+- Start with refactoring the specs
 
-2. Otherwise since the task was broad there could be tons of possibilites,
-maybe add a language param to search for etc.
+- Handling errors from Twitter API
+
+- Otherwise since the task was broad there could be tons of possibilites,
+maybe add a language param to search for, maybe some low-level caching, maybe streaming the tweets, so many possibilities etc.
