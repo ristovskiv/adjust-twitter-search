@@ -4,6 +4,7 @@ class TweetSearchForm
   attr_accessor :q, :count
 
   validate :format_of_search_term
+  validates :q, length: { maximum: 100 }
   validates :count, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, allow_blank: true
 
   def self.model_name

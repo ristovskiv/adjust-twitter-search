@@ -31,6 +31,13 @@ RSpec.describe TweetSearchForm do
 
         expect(tweet_search_form.errors[:q]).to include(match(/is invalid/))
       end
+
+      it 'can not exceed length of 100' do
+        tweet_search_form = described_class.new(q: 'a' * 101)
+        tweet_search_form.valid?
+
+        expect(tweet_search_form.errors[:q]).to include(match(/too long/))
+      end
     end
 
     describe '#count' do
